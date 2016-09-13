@@ -1,5 +1,7 @@
 package edu.evt.admin.user;
 
+import com.mongodb.MongoClient;
+
 public class User {
 	private String firstName;
 	private String lastName;
@@ -16,11 +18,7 @@ public class User {
 		this.username = username;
 	}
 
-	public String getName(){
-		return this.firstName + " " + this.lastName;
-	}
-
-	public long getId(){
-		return this.id;
+	public static User get(String UUID){
+		return null;
 	}
 }
