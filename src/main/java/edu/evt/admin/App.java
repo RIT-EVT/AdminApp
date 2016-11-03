@@ -37,13 +37,6 @@ public class App extends ResourceConfig{
 		context.addServlet(apiHolder, "/api/*");
 		context.addServlet(staticHolder, "/");
 
-//		ServletHolder servlet = context.addServlet(ServletContainer.class, "/*");
-//		servlet.setInitOrder(0);
-//
-//		Map<String, String> servletParams = new HashMap<>();
-//		servletParams.put("javax.ws.rs.Application", App.class.getCanonicalName());
-//		servlet.setInitParameters(servletParams);
-
 		try {
 			server.start();
 			server.join();

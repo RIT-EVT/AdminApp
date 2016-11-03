@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api.iml" filepath="$PROJECT_DIR$/.idea/modules/api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api_main.iml" filepath="$PROJECT_DIR$/.idea/modules/api_main.iml" group="api" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api_test.iml" filepath="$PROJECT_DIR$/.idea/modules/api_test.iml" group="api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adminapp.iml" filepath="$PROJECT_DIR$/.idea/modules/adminapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adminapp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/adminapp_main.iml" group="adminapp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adminapp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/adminapp_test.iml" group="adminapp" />
     </modules>
   </component>
 </project>

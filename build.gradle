@@ -11,5 +11,7 @@ dependencies {
     compile 'org.eclipse.jetty:jetty-server:9.3.12.v20160915'
     compile 'org.eclipse.jetty:jetty-servlet:9.3.12.v20160915'
 
+    compile 'org.seleniumhq.selenium:selenium-java:3.0.1'
+
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.23.2'
 }
