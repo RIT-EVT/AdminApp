@@ -31,7 +31,7 @@ public class Wiki {
         WebElement loginButton = driver.findElement(By.id("loginButton"));
         loginButton.click();
 
-        // At this point, we should have reached the members list page. 
+        // At this point, we should have reached the members list page.
         return true;
     }
 
