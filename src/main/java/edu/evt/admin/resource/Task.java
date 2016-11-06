@@ -38,7 +38,7 @@ public class Task {
             }
         };
         return Response.ok(fileStream, MediaType.APPLICATION_OCTET_STREAM)
-                .header("content-disposition", "attachment; filename = screenshot.sc")
+                .header("content-disposition", "attachment; filename = screenshot.png")
                 .build();
     }
 
