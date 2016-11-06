@@ -1,7 +1,7 @@
 # RIT EVT Admin App
 
 Depdencies:
-- MongoDB
+* MongoDB
 
 The easiest way to get MongoDB is to just run it in a docker container and setup the correct ports. For example:
 ```sh
