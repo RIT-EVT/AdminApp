@@ -3,6 +3,7 @@ package edu.evt.admin;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -21,11 +22,12 @@ public class App extends ResourceConfig{
 	 * When the App is run as a servlet.
 	 */
 	public App(){
-		packages("edu.evt.admin.resource");
         App.mongo = new MongoClient();
         App.db = App.mongo.getDatabase("admin");
 
         App.credentialProvider = new CredentialProvider();
+
+		packages("edu.evt.admin.resource");
 
 	}
 

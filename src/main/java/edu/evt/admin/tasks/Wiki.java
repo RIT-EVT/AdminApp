@@ -1,9 +1,12 @@
 package edu.evt.admin.tasks;
 
+import edu.evt.admin.App;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by wheeler on 11/2/16.
@@ -16,23 +19,27 @@ public class Wiki {
     public Wiki(){
     }
 
-    public boolean setup(){
-        driver = new FirefoxDriver();
+    public byte[] setup(){
+        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        capabilities.setCapability("marionette", true);
+        driver = new FirefoxDriver(capabilities);
         driver.get(START_URL);
 
         WebElement usernameField = driver.findElement(By.id("os_username"));
         usernameField.clear();
-        usernameField.sendKeys("evt");
+        usernameField.sendKeys(App.credentialProvider.get("wiki_username"));
 
         WebElement passwordField = driver.findElement(By.id("os_password"));
         passwordField.clear();
-        passwordField.sendKeys("somePassword"); // TODO: need to implement some sort of encrypted credentials provider so I dont have to put them in code.
+        passwordField.sendKeys(App.credentialProvider.get("wiki_password"));
 
         WebElement loginButton = driver.findElement(By.id("loginButton"));
         loginButton.click();
 
+        byte[] scData = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+
         // At this point, we should have reached the members list page.
-        return true;
+        return scData;
     }
 
     public boolean addOne(){

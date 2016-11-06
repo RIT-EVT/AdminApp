@@ -34,6 +34,7 @@ task runApp(type: JavaExec) {
 
 import com.mongodb.MongoClient
 import com.mongodb.client.MongoDatabase
+import org.bson.Document
 
 task setup << {
     logger.info("Bootstrapping the database...")
@@ -42,5 +43,8 @@ task setup << {
 
     def MongoDatabase db = mongo.getDatabase("admin")
     db.createCollection("credentials")
+
+    db.getCollection("credentials").insertOne(new Document("key", "wiki_username").append("value", "evt"));
+    db.getCollection("credentials").insertOne(new Document("key", "wiki_password").append("value", System.getenv("EVTPASS")));
 
 }
