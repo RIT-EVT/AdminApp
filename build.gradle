@@ -18,3 +18,23 @@ dependencies {
 
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.23.2'
 }
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.mongodb', name: 'mongodb-driver', version: '3.3.0'
+    }
+}
+
+import com.mongodb.MongoClient
+import com.mongodb.client.MongoDatabase
+
+task setup << {
+    def MongoClient mongo = new MongoClient()
+    def MongoDatabase db = mongo.getDatabase("admin")
+
+    db.createCollection("credentials")
+
+}
