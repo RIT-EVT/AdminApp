@@ -46,7 +46,7 @@ public class App extends ResourceConfig{
 
 		new FastClasspathScanner(new String[] {"edu.evt.admin.tasks"})
 				.matchClassesImplementing(TaskI.class,
-						clazz -> tasks.put(clazz.getName(), clazz))
+						clazz -> tasks.put(clazz.getSimpleName(), clazz))
 				.scan();
 
 		return tasks;
