@@ -27,13 +27,20 @@ buildscript {
     }
 }
 
+task runApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'edu.evt.admin.App'
+}
+
 import com.mongodb.MongoClient
 import com.mongodb.client.MongoDatabase
 
 task setup << {
+    logger.info("Bootstrapping the database...")
     def MongoClient mongo = new MongoClient()
-    def MongoDatabase db = mongo.getDatabase("admin")
+    mongo.dropDatabase("admin")
 
+    def MongoDatabase db = mongo.getDatabase("admin")
     db.createCollection("credentials")
 
 }
