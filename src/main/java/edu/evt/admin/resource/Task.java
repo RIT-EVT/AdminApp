@@ -1,9 +1,12 @@
 package edu.evt.admin.resource;
 
+import edu.evt.admin.App;
+import edu.evt.admin.TaskI;
 import edu.evt.admin.tasks.Wiki;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,27 +22,19 @@ import java.io.OutputStream;
 public class Task {
 
     @GET
-    @Path("/")
-    public Response getFile(){
-        StreamingOutput fileStream = new StreamingOutput() {
-            @Override
-            public void write(OutputStream output) throws IOException, WebApplicationException {
-                try{
-                    Wiki task = new Wiki();
-                    byte[] data = task.setup();
-                    task.teardown();
+    @Path("/{taskName}/{action}")
+    public String executeAction(@PathParam("taskName") String taskName, @PathParam("action") String action){
+        try {
+            Class<? extends TaskI> taskClass = App.tasks.get(taskName);
+            TaskI task = taskClass.getDeclaredConstructor().newInstance();
+            task.setUp();
 
-                    output.write(data);
-                    output.flush();
-                }catch (Exception e){
-                    e.printStackTrace();
-                    throw new WebApplicationException("Error processing page!");
-                }
-            }
-        };
-        return Response.ok(fileStream, MediaType.APPLICATION_OCTET_STREAM)
-                .header("content-disposition", "attachment; filename = screenshot.png")
-                .build();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            return "it worked!";
+        }
+
     }
 
 }

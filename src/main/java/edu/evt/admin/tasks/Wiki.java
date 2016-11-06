@@ -1,6 +1,7 @@
 package edu.evt.admin.tasks;
 
 import edu.evt.admin.App;
+import edu.evt.admin.TaskI;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -11,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by wheeler on 11/2/16.
  */
-public class Wiki {
+public class Wiki implements TaskI{
     public static String START_URL = "https://wiki.rit.edu/customspacemgmt/permissions/docustompermissionsmanage.action?key=EVT&selectedGroup=EVT-members";
 
     private WebDriver driver;
@@ -19,7 +20,7 @@ public class Wiki {
     public Wiki(){
     }
 
-    public byte[] setup(){
+    public boolean setUp(){
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability("marionette", true);
         driver = new FirefoxDriver(capabilities);
@@ -39,7 +40,7 @@ public class Wiki {
         byte[] scData = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 
         // At this point, we should have reached the members list page.
-        return scData;
+        return false;
     }
 
     public boolean addOne(){
@@ -49,7 +50,11 @@ public class Wiki {
 
     }
 
-    public boolean teardown(){
+    public boolean addMany(){
+        return true;
+    }
+
+    public boolean tearDown(){
         driver.quit();
         return true;
 
