@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 
 /**
  * Created by wheeler on 11/6/16.
@@ -27,7 +28,10 @@ public class Task {
         try {
             Class<? extends TaskI> taskClass = App.tasks.get(taskName);
             TaskI task = taskClass.getDeclaredConstructor().newInstance();
+            Method actionMethod = taskClass.getMethod(action);
             task.setUp();
+            actionMethod.invoke(task);
+            task.tearDown();
 
         }catch(Exception e){
             e.printStackTrace();

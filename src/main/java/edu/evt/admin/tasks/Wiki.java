@@ -5,6 +5,8 @@ import edu.evt.admin.TaskI;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,6 +39,9 @@ public class Wiki implements TaskI{
         WebElement loginButton = driver.findElement(By.id("loginButton"));
         loginButton.click();
 
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("addUsersForm")));
+
         byte[] scData = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 
         // At this point, we should have reached the members list page.
@@ -45,7 +50,6 @@ public class Wiki implements TaskI{
 
     public boolean addOne(){
 
-        driver.get("https://wiki.rit.edu");
         return false;
 
     }
